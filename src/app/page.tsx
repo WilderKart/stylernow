@@ -107,8 +107,18 @@ export default function Home() {
 
       {/* 2. HERO SECTION */}
       <section id="inicio" className="relative pt-32 pb-24 lg:pt-52 lg:pb-40 px-6 overflow-hidden">
+        {/* Hero Background Image */}
+        <div className="absolute inset-0 -z-20">
+          <img
+            src="/images/hero-bg.png"
+            alt="Barbería de lujo"
+            className="w-full h-full object-cover opacity-40 mix-blend-overlay"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-background" />
+        </div>
+
         {/* Subtle Background Glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-surface/30 blur-[150px] rounded-full -z-10" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary-accent/10 blur-[150px] rounded-full -z-10" />
 
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
           <motion.div
