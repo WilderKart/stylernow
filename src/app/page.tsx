@@ -108,24 +108,24 @@ export default function Home() {
       {/* 2. HERO SECTION */}
       <section id="inicio" className="relative pt-32 pb-24 lg:pt-52 lg:pb-40 px-6 overflow-hidden">
         {/* Hero Background Video */}
-        <div className="absolute inset-0 -z-20">
+        <div className="absolute inset-0 z-0 overflow-hidden">
           <video
             autoPlay
             muted
             loop
             playsInline
             poster="/images/hero-bg.png"
-            className="w-full h-full object-cover opacity-30"
+            className="w-full h-full object-cover opacity-60 scale-105"
           >
             <source src="/images/herovideo.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0 bg-gradient-to-b from-background via-background/70 to-background" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-background/40 to-background" />
         </div>
 
         {/* Subtle Background Glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary-accent/10 blur-[150px] rounded-full -z-10" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary-accent/10 blur-[150px] rounded-full z-0" />
 
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+        <div className="relative z-10 max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -419,10 +419,23 @@ export default function Home() {
       </section>
 
       {/* 8. DOWNLOAD / CTA AREA */}
-      <section id="leads" className="py-32 px-6 relative bg-gradient-to-t from-background via-surface to-background overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary-accent/50 to-transparent" />
+      <section id="leads" className="py-32 px-6 relative overflow-hidden bg-background">
+        {/* Background Video for Leads Section */}
+        <div className="absolute inset-0 z-0">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover opacity-50"
+          >
+            <source src="/images/herovideo.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/40" />
+        </div>
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary-accent/50 to-transparent z-10" />
 
-        <div className="max-w-4xl mx-auto flex flex-col items-center">
+        <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
           <motion.div {...fadeUp} className="text-center mb-16 space-y-8">
             <div className="w-24 h-24 bg-primary-accent/10 rounded-[2rem] flex items-center justify-center mx-auto border border-primary-accent/20 shadow-inner">
               <Rocket className="text-primary-accent" size={48} />
