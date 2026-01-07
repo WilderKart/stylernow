@@ -107,14 +107,19 @@ export default function Home() {
 
       {/* 2. HERO SECTION */}
       <section id="inicio" className="relative pt-32 pb-24 lg:pt-52 lg:pb-40 px-6 overflow-hidden">
-        {/* Hero Background Image */}
+        {/* Hero Background Video */}
         <div className="absolute inset-0 -z-20">
-          <img
-            src="/images/hero-bg.png"
-            alt="Barbería de lujo"
-            className="w-full h-full object-cover opacity-40 mix-blend-overlay"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-background" />
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster="/images/hero-bg.png"
+            className="w-full h-full object-cover opacity-30"
+          >
+            <source src="/images/herovideo.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-gradient-to-b from-background via-background/70 to-background" />
         </div>
 
         {/* Subtle Background Glow */}
