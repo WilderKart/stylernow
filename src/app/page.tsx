@@ -177,7 +177,7 @@ export default function Home() {
 
             {/* Stat 3: Onboarding */}
             <motion.div {...fadeUp} transition={{ delay: 0.2 }} className="flex flex-col items-center text-center space-y-4">
-              <Counter targetValue={138} />
+              <Counter targetValue={138} isLive={true} />
               <div className="space-y-1 px-4">
                 <h4 className="text-xs md:text-sm font-black uppercase tracking-widest text-main-text">Barberías en onboarding</h4>
                 <p className="text-[10px] uppercase tracking-[0.2em] text-secondary-text opacity-60 font-bold">Configurándose ahora mismo.</p>

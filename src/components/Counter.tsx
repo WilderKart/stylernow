@@ -49,24 +49,43 @@ export default function Counter({ targetValue = 0, prefix = "", suffix = "", isL
     const hasAnimated = useRef(false);
 
     useEffect(() => {
-        if (isLive) {
-            const fetchCount = async () => {
-                const { count: supabaseCount, error } = await supabase
-                    .from("leads")
-                    .select("*", { count: "exact", head: true });
+        if (!isLive) return;
 
-                if (!error && supabaseCount !== null) {
-                    setFinalTarget(baseCount + supabaseCount);
+        const fetchCount = async () => {
+            const { count: supabaseCount, error } = await supabase
+                .from("leads")
+                .select("*", { count: "exact", head: true });
+
+            if (!error && supabaseCount !== null) {
+                setFinalTarget(baseCount + supabaseCount);
+            }
+        };
+
+        fetchCount();
+
+        // Subscribe to changes in the leads table
+        const channel = supabase
+            .channel("leads-realtime")
+            .on(
+                "postgres_changes",
+                { event: "INSERT", schema: "public", table: "leads" },
+                () => {
+                    setFinalTarget((prev) => prev + 1);
                 }
-            };
-            fetchCount();
-        }
-    }, [isLive]);
+            )
+            .subscribe();
+
+        return () => {
+            supabase.removeChannel(channel);
+        };
+    }, [isLive, baseCount]);
 
     useEffect(() => {
-        if (isInView && !hasAnimated.current && finalTarget > 0) {
-            hasAnimated.current = true;
+        if (!isInView || finalTarget <= 0) return;
 
+        // Initial animation from 0
+        if (!hasAnimated.current) {
+            hasAnimated.current = true;
             const controls = animate(0, finalTarget, {
                 duration: 2,
                 ease: "easeOut",
@@ -74,7 +93,16 @@ export default function Counter({ targetValue = 0, prefix = "", suffix = "", isL
                     setDisplayValue(Math.floor(value));
                 },
             });
-
+            return () => controls.stop();
+        } else {
+            // Real-time update animation from current value
+            const controls = animate(displayValue, finalTarget, {
+                duration: 1,
+                ease: "backOut",
+                onUpdate(value) {
+                    setDisplayValue(Math.floor(value));
+                },
+            });
             return () => controls.stop();
         }
     }, [isInView, finalTarget]);
