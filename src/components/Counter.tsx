@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState, useRef } from "react";
+import { motion, AnimatePresence, useInView, animate } from "framer-motion";
 import { supabase } from "@/lib/supabaseClient";
 
 interface RollingNumberProps {
@@ -21,8 +21,8 @@ function RollingNumber({ value }: RollingNumberProps) {
                             initial={{ y: "100%", opacity: 0 }}
                             animate={{ y: 0, opacity: 1 }}
                             exit={{ y: "-100%", opacity: 0 }}
-                            transition={{ duration: 0.5, ease: "easeOut" }}
-                            className="absolute inset-0 flex items-center justify-center"
+                            transition={{ duration: 0.3, ease: "easeOut" }}
+                            className="absolute inset-0 flex items-center justify-center font-black"
                         >
                             {digit}
                         </motion.span>
@@ -40,45 +40,47 @@ interface CounterProps {
     isLive?: boolean;
 }
 
-export default function Counter({ targetValue, prefix = "", suffix = "", isLive = false }: CounterProps) {
-    const [count, setCount] = useState(targetValue || 334);
-    const baseCount = 334;
+export default function Counter({ targetValue = 0, prefix = "", suffix = "", isLive = false }: CounterProps) {
+    const [displayValue, setDisplayValue] = useState(0);
+    const [finalTarget, setFinalTarget] = useState(targetValue);
+    const containerRef = useRef(null);
+    const isInView = useInView(containerRef, { once: true, amount: 0.5 });
+    const hasAnimated = useRef(false);
 
     useEffect(() => {
-        if (!isLive) return;
+        if (isLive) {
+            const fetchCount = async () => {
+                const baseCount = 334;
+                const { count: supabaseCount, error } = await supabase
+                    .from("leads")
+                    .select("*", { count: "exact", head: true });
 
-        // Initial fetch
-        const fetchCount = async () => {
-            const { count: supabaseCount, error } = await supabase
-                .from("leads")
-                .select("*", { count: "exact", head: true });
-
-            if (!error && supabaseCount !== null) {
-                setCount(baseCount + supabaseCount);
-            }
-        };
-
-        fetchCount();
-
-        // Subscribe to changes in the leads table
-        const channel = supabase
-            .channel("leads-counter")
-            .on(
-                "postgres_changes",
-                { event: "INSERT", schema: "public", table: "leads" },
-                () => {
-                    setCount((prev) => prev + 1);
+                if (!error && supabaseCount !== null) {
+                    setFinalTarget(baseCount + supabaseCount);
                 }
-            )
-            .subscribe();
+            };
+            fetchCount();
+        }
+    }, [isLive]);
 
-        return () => {
-            supabase.removeChannel(channel);
-        };
-    }, [isLive, baseCount]);
+    useEffect(() => {
+        if (isInView && !hasAnimated.current) {
+            hasAnimated.current = true;
+
+            const controls = animate(0, finalTarget, {
+                duration: 2,
+                ease: "easeOut",
+                onUpdate(value) {
+                    setDisplayValue(Math.floor(value));
+                },
+            });
+
+            return () => controls.stop();
+        }
+    }, [isInView, finalTarget]);
 
     return (
-        <div className="flex items-center justify-center text-4xl md:text-7xl font-black text-main-text tracking-tighter">
+        <div ref={containerRef} className="flex items-center justify-center text-4xl md:text-7xl font-black text-main-text tracking-tighter">
             <div className="flex items-center h-[1.2em]">
                 {prefix && (
                     <span className="text-primary-accent text-[0.7em] md:text-[0.7em] mr-1 leading-none">
@@ -86,7 +88,7 @@ export default function Counter({ targetValue, prefix = "", suffix = "", isLive 
                     </span>
                 )}
                 <div className="flex h-full items-center">
-                    <RollingNumber value={count} />
+                    <RollingNumber value={displayValue} />
                 </div>
                 {suffix && (
                     <span className="text-primary-accent text-[0.7em] md:text-[0.7em] ml-1 leading-none">
