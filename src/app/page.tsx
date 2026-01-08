@@ -109,15 +109,15 @@ export default function Home() {
 
       {/* 2. HERO SECTION */}
       <section id="inicio" className="relative pt-32 pb-20 md:pt-40 md:pb-24 lg:pt-60 lg:pb-32 px-6 overflow-hidden min-h-[80vh] md:min-h-[90vh] flex items-center">
-        {/* Background Image - Optimized to avoid excessive zoom */}
+        {/* Background Image - Optimized to avoid excessive zoom and centered on subject for mobile */}
         <div className="absolute inset-0 z-0 overflow-hidden">
           <img
             src="/images/hero-premium.jpg"
             alt="Stylernow Premium Experience"
-            className="w-full h-full object-cover object-[center_25%] md:object-center opacity-60 md:opacity-50 select-none pointer-events-none transition-all duration-1000"
+            className="w-full h-full object-cover object-[80%_center] md:object-center opacity-75 md:opacity-50 select-none pointer-events-none transition-all duration-1000"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/20 to-background" />
-          <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-transparent to-background/80 md:hidden" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/40 to-background" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background/60 via-transparent to-background/60 md:hidden" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto flex flex-col items-center text-center">
