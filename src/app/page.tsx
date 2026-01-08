@@ -18,6 +18,7 @@ import {
   ArrowRight
 } from "lucide-react";
 import { useState, useEffect } from "react";
+import Counter from "@/components/Counter";
 import LeadForm from "@/components/LeadForm";
 import { LegalLinks, ContactInfo } from "@/components/Legal";
 
@@ -113,9 +114,9 @@ export default function Home() {
           <img
             src="/images/hero-premium.jpg"
             alt="Stylernow Premium Experience"
-            className="w-full h-full object-cover opacity-40 select-none pointer-events-none scale-105"
+            className="w-full h-full object-cover opacity-65 select-none pointer-events-none scale-105 transition-opacity duration-1000"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-background via-background/20 to-background" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/40 to-background" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto flex flex-col items-center text-center">
@@ -149,20 +150,52 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 3. SOFT SOCIAL PROOF */}
-      <section className="py-20 border-y border-secondary-accent/5 bg-surface/30">
-        <div className="max-w-7xl mx-auto px-6 text-center space-y-8">
-          <motion.div {...fadeUp} className="space-y-4">
-            <h3 className="text-xl md:text-2xl font-medium text-main-text">
-              Lista de espera activa • Barberías en proceso de activación • Acceso por invitación
-            </h3>
-            <p className="text-xs uppercase tracking-[0.3em] text-secondary-text font-bold">
-              Nuevas barberías aceptadas cada semana.
-            </p>
-          </motion.div>
-          <motion.div {...fadeUp} transition={{ delay: 0.2 }}>
-            <a href="#leads" className="inline-flex items-center gap-2 text-primary-accent font-bold uppercase tracking-widest text-xs hover:gap-4 transition-all group">
-              {primaryCTA} <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+      {/* 3. SOFT SOCIAL PROOF (Stats) */}
+      <section className="py-24 border-y border-secondary-accent/5 bg-surface/30 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-background opacity-50" />
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+            {/* Stat 1: Waitlist */}
+            <motion.div {...fadeUp} className="flex flex-col items-center text-center space-y-4">
+              <Counter isLive={true} prefix="+" />
+              <div className="space-y-1 px-4">
+                <h4 className="text-xs md:text-sm font-black uppercase tracking-widest text-main-text">Solicitudes en lista de espera</h4>
+                <p className="text-[10px] uppercase tracking-[0.2em] text-secondary-text opacity-60 font-bold">Acceso solo por invitación.</p>
+              </div>
+            </motion.div>
+
+            {/* Stat 2: New this week */}
+            <motion.div {...fadeUp} transition={{ delay: 0.1 }} className="flex flex-col items-center text-center space-y-4">
+              <Counter targetValue={47} prefix="+" />
+              <div className="space-y-1 px-4">
+                <h4 className="text-xs md:text-sm font-black uppercase tracking-widest text-main-text">Nuevas solicitudes esta semana</h4>
+                <p className="text-[10px] uppercase tracking-[0.2em] text-secondary-text opacity-60 font-bold">El interés sigue creciendo.</p>
+              </div>
+            </motion.div>
+
+            {/* Stat 3: Onboarding */}
+            <motion.div {...fadeUp} transition={{ delay: 0.2 }} className="flex flex-col items-center text-center space-y-4">
+              <Counter targetValue={138} />
+              <div className="space-y-1 px-4">
+                <h4 className="text-xs md:text-sm font-black uppercase tracking-widest text-main-text">Barberías en onboarding</h4>
+                <p className="text-[10px] uppercase tracking-[0.2em] text-secondary-text opacity-60 font-bold">Configurándose ahora mismo.</p>
+              </div>
+            </motion.div>
+
+            {/* Stat 4: Acceptance Rate */}
+            <motion.div {...fadeUp} transition={{ delay: 0.3 }} className="flex flex-col items-center text-center space-y-4">
+              <Counter targetValue={78} suffix="%" />
+              <div className="space-y-1 px-4">
+                <h4 className="text-xs md:text-sm font-black uppercase tracking-widest text-main-text">Tasa de aceptación</h4>
+                <p className="text-[10px] uppercase tracking-[0.2em] text-secondary-text opacity-60 font-bold">Acceso limitado por cupos.</p>
+              </div>
+            </motion.div>
+          </div>
+
+          <motion.div {...fadeUp} transition={{ delay: 0.4 }} className="flex justify-center mt-16">
+            <a href="#leads" className="btn-gold px-10 py-4 text-[10px] font-bold uppercase tracking-[0.2em] shadow-xl shadow-primary-accent/10">
+              {primaryCTA}
             </a>
           </motion.div>
         </div>
@@ -208,10 +241,20 @@ export default function Home() {
       </section>
 
       {/* 5. HOW IT WORKS */}
-      <section id="como-funciona" className="py-40 px-6 bg-surface/20">
-        <div className="max-w-7xl mx-auto">
+      <section id="como-funciona" className="relative py-40 px-6 overflow-hidden">
+        {/* Premium Barber Background */}
+        <div className="absolute inset-0 z-0 opacity-40 filter grayscale contrast-125 transition-opacity duration-1000">
+          <img
+            src="/images/steps-bg-premium.png"
+            alt="Premium Barber Background"
+            className="w-full h-full object-cover select-none pointer-events-none"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/20 to-background" />
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto">
           <motion.div {...fadeUp} className="text-center mb-32">
-            <h2 className="text-4xl md:text-7xl font-bold text-main-text uppercase">Tu negocio, en su mejor versión.</h2>
+            <h2 className="text-4xl md:text-7xl font-bold text-main-text uppercase tracking-tighter">Tu negocio, en su mejor versión.</h2>
           </motion.div>
 
           <div className="space-y-40">
@@ -233,9 +276,21 @@ export default function Home() {
               }
             ].map((step, i) => (
               <div key={i} className={`flex flex-col ${i % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-20 lg:gap-32`}>
-                <motion.div {...fadeUp} className="flex-1 space-y-8">
-                  <div className="text-primary-accent font-black text-4xl opacity-20 tracking-tighter">Step {step.step}</div>
-                  <h3 className="text-3xl md:text-5xl font-bold text-main-text leading-tight">{step.text}</h3>
+                <motion.div {...fadeUp} className="flex-1 space-y-10">
+                  {/* Circular Step Indicator */}
+                  <div className="relative w-32 h-32 flex items-center justify-center">
+                    {/* Outer Yellow Circle */}
+                    <div className="absolute inset-0 bg-primary-accent rounded-full shadow-[0_0_40px_rgba(var(--primary-accent-rgb),0.2)]" />
+                    {/* Inner Black Circle */}
+                    <div className="absolute w-[80%] h-[80%] bg-[#121212] rounded-full flex items-center justify-center border border-primary-accent/10">
+                      <div className="flex flex-col items-center">
+                        <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/40 mb-1">PASO</span>
+                        <span className="text-3xl font-black text-primary-accent tracking-tighter">{step.step}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <h3 className="text-3xl md:text-5xl font-bold text-main-text leading-tight tracking-tight uppercase">{step.text}</h3>
                   <a href="#leads" className="btn-outline-gold inline-flex px-10 py-4 text-[10px] uppercase font-bold tracking-[0.2em]">
                     {primaryCTA}
                   </a>
