@@ -108,19 +108,14 @@ export default function Home() {
 
       {/* 2. HERO SECTION */}
       <section id="inicio" className="relative pt-40 pb-24 lg:pt-60 lg:pb-32 px-6 overflow-hidden min-h-[90vh] flex items-center">
-        {/* Background Video */}
+        {/* Background Image */}
         <div className="absolute inset-0 z-0">
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            poster="/images/hero-bg.png"
-            className="w-full h-full object-cover opacity-30 select-none pointer-events-none"
-          >
-            <source src="/images/herovideo.mp4" type="video/mp4" />
-          </video>
-          <div className="absolute inset-0 bg-gradient-to-b from-background via-background/40 to-background" />
+          <img
+            src="/images/hero-premium.jpg"
+            alt="Stylernow Premium Experience"
+            className="w-full h-full object-cover opacity-40 select-none pointer-events-none scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-background via-background/20 to-background" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto flex flex-col items-center text-center">
