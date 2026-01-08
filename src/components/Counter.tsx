@@ -64,7 +64,7 @@ export default function Counter({ targetValue = 0, prefix = "", suffix = "", isL
     }, [isLive]);
 
     useEffect(() => {
-        if (isInView && !hasAnimated.current) {
+        if (isInView && !hasAnimated.current && finalTarget > 0) {
             hasAnimated.current = true;
 
             const controls = animate(0, finalTarget, {
