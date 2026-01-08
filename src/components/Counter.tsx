@@ -42,7 +42,8 @@ interface CounterProps {
 
 export default function Counter({ targetValue = 0, prefix = "", suffix = "", isLive = false }: CounterProps) {
     const [displayValue, setDisplayValue] = useState(0);
-    const [finalTarget, setFinalTarget] = useState(targetValue);
+    const baseCount = 334;
+    const [finalTarget, setFinalTarget] = useState(isLive ? baseCount : targetValue);
     const containerRef = useRef(null);
     const isInView = useInView(containerRef, { once: true, amount: 0.5 });
     const hasAnimated = useRef(false);
@@ -50,7 +51,6 @@ export default function Counter({ targetValue = 0, prefix = "", suffix = "", isL
     useEffect(() => {
         if (isLive) {
             const fetchCount = async () => {
-                const baseCount = 334;
                 const { count: supabaseCount, error } = await supabase
                     .from("leads")
                     .select("*", { count: "exact", head: true });
