@@ -108,15 +108,15 @@ export default function Home() {
       </nav>
 
       {/* 2. HERO SECTION */}
-      <section id="inicio" className="relative pt-40 pb-24 lg:pt-60 lg:pb-32 px-6 overflow-hidden min-h-[90vh] flex items-center">
-        {/* Background Image */}
+      <section id="inicio" className="relative pt-32 pb-20 md:pt-40 md:pb-24 lg:pt-60 lg:pb-32 px-6 overflow-hidden min-h-[70vh] md:min-h-[90vh] flex items-center">
+        {/* Background Image - Optimized for Mobile */}
         <div className="absolute inset-0 z-0">
           <img
             src="/images/hero-premium.jpg"
             alt="Stylernow Premium Experience"
-            className="w-full h-full object-cover object-center opacity-70 select-none pointer-events-none transition-all duration-1000"
+            className="w-full h-full object-cover object-[center_20%] md:object-center opacity-70 md:opacity-65 select-none pointer-events-none transition-all duration-1000"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/40 to-background" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/40 to-background" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto flex flex-col items-center text-center">
@@ -242,22 +242,22 @@ export default function Home() {
 
       {/* 5. HOW IT WORKS */}
       <section id="como-funciona" className="relative py-24 md:py-40 px-6 overflow-hidden">
-        {/* Premium Barber Background */}
+        {/* Premium Barber Background - Optimized for Mobile visibility */}
         <div className="absolute inset-0 z-0 opacity-40 filter grayscale contrast-125 overflow-hidden">
           <img
             src="/images/steps-bg-premium.png"
             alt="Premium Barber Background"
-            className="w-full h-full object-cover object-center select-none pointer-events-none transition-all duration-1000"
+            className="w-full h-full object-cover object-[center_top] md:object-center select-none pointer-events-none transition-all duration-1000"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/20 to-background" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background via-background/20 to-background" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto">
-          <motion.div {...fadeUp} className="text-center mb-32">
+          <motion.div {...fadeUp} className="text-center mb-20 md:mb-32">
             <h2 className="text-4xl md:text-7xl font-bold text-main-text uppercase tracking-tighter">Tu negocio, en su mejor versión.</h2>
           </motion.div>
 
-          <div className="space-y-40">
+          <div className="space-y-32 md:space-y-40">
             {[
               {
                 step: "01",
