@@ -114,9 +114,9 @@ export default function Home() {
           <img
             src="/images/hero-premium.jpg"
             alt="Stylernow Premium Experience"
-            className="w-full h-full object-cover opacity-65 select-none pointer-events-none scale-105 transition-opacity duration-1000"
+            className="w-full h-full object-cover object-center opacity-70 select-none pointer-events-none transition-all duration-1000"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/40 to-background" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/40 to-background" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto flex flex-col items-center text-center">
@@ -241,15 +241,15 @@ export default function Home() {
       </section>
 
       {/* 5. HOW IT WORKS */}
-      <section id="como-funciona" className="relative py-40 px-6 overflow-hidden">
+      <section id="como-funciona" className="relative py-24 md:py-40 px-6 overflow-hidden">
         {/* Premium Barber Background */}
-        <div className="absolute inset-0 z-0 opacity-40 filter grayscale contrast-125 transition-opacity duration-1000">
+        <div className="absolute inset-0 z-0 opacity-40 filter grayscale contrast-125 overflow-hidden">
           <img
             src="/images/steps-bg-premium.png"
             alt="Premium Barber Background"
-            className="w-full h-full object-cover select-none pointer-events-none"
+            className="w-full h-full object-cover object-center select-none pointer-events-none transition-all duration-1000"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/20 to-background" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/20 to-background" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto">
