@@ -48,8 +48,8 @@ export default function LeadForm() {
                 <div className="w-16 h-16 bg-success/10 rounded-full flex items-center justify-center mb-2">
                     <CheckCircle size={40} className="text-success" />
                 </div>
-                <h3 className="text-2xl font-bold text-main-text">¡Solicitud Enviada!</h3>
-                <p className="text-secondary-text">Pronto estarás operando como un barbero del futuro. Nos pondremos en contacto contigo.</p>
+                <h3 className="text-2xl font-bold text-main-text">Inscripción Completada</h3>
+                <p className="text-secondary-text">Su solicitud de acceso anticipado ha sido recibida. Un miembro de nuestro equipo contactará con usted en las próximas 24 horas.</p>
             </motion.div>
         );
     }
@@ -60,7 +60,7 @@ export default function LeadForm() {
                 <div className="w-10 h-10 rounded-lg bg-primary-accent/10 flex items-center justify-center">
                     <ShieldCheck className="text-primary-accent" size={24} />
                 </div>
-                <h3 className="text-2xl font-bold text-main-text">🚀 QUIERO MI BARBERÍA LLENA</h3>
+                <h3 className="text-2xl font-bold text-main-text">Solicitar acceso anticipado</h3>
             </div>
 
             <div className="space-y-4">
@@ -70,7 +70,7 @@ export default function LeadForm() {
                         required
                         name="name"
                         type="text"
-                        placeholder="Ej: John Doe"
+                        placeholder="Nombre y apellidos"
                         className="w-full bg-background border border-secondary-accent/10 rounded-xl p-3 text-main-text placeholder:text-secondary-text/30 focus:border-primary-accent outline-none transition-all focus:ring-1 focus:ring-primary-accent/50"
                     />
                 </div>
@@ -82,7 +82,7 @@ export default function LeadForm() {
                             required
                             name="phone"
                             type="tel"
-                            placeholder="312..."
+                            placeholder="+57..."
                             className="w-full bg-background border border-secondary-accent/10 rounded-xl p-3 text-main-text placeholder:text-secondary-text/30 focus:border-primary-accent outline-none transition-all focus:ring-1 focus:ring-primary-accent/50"
                         />
                     </div>
@@ -92,7 +92,7 @@ export default function LeadForm() {
                             required
                             name="email"
                             type="email"
-                            placeholder="correo@..."
+                            placeholder="correo@ejemplo.com"
                             className="w-full bg-background border border-secondary-accent/10 rounded-xl p-3 text-main-text placeholder:text-secondary-text/30 focus:border-primary-accent outline-none transition-all focus:ring-1 focus:ring-primary-accent/50"
                         />
                     </div>
@@ -104,7 +104,7 @@ export default function LeadForm() {
                         required
                         name="barbershop_name"
                         type="text"
-                        placeholder="La Logia..."
+                        placeholder="Nombre comercial"
                         className="w-full bg-background border border-secondary-accent/10 rounded-xl p-3 text-main-text placeholder:text-secondary-text/30 focus:border-primary-accent outline-none transition-all focus:ring-1 focus:ring-primary-accent/50"
                     />
                 </div>
@@ -130,11 +130,11 @@ export default function LeadForm() {
                 type="submit"
                 className="btn-gold w-full flex items-center justify-center space-x-2"
             >
-                {loading ? <Loader2 className="animate-spin" /> : <span>ENVIAR SOLICITUD</span>}
+                {loading ? <Loader2 className="animate-spin" /> : <span className="uppercase tracking-[0.2em] text-sm">Solicitar acceso anticipado</span>}
             </button>
 
             <p className="text-[10px] text-center text-secondary-text/50 uppercase tracking-widest">
-                🔐 Tus datos están seguros con cifrado de grado militar
+                Seguridad de datos certificada bajo estándares internacionales
             </p>
         </form>
     );

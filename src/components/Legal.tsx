@@ -12,7 +12,7 @@ export function LegalLinks() {
 export function ContactInfo() {
     return (
         <p className="text-xs text-secondary-text/60 font-medium">
-            Stylernow - Hecho en Cali para barberos serios.
+            Stylernow — The operating system for modern barbershops.
         </p>
     );
 }
