@@ -19,7 +19,7 @@ const slides = [
         title: "Asistencia inteligente",
         subtitle: "Disponible 24/7",
         description: "Un asistente que nunca duerme y siempre atiende. Confirma, recuerda y organiza cada interacción automáticamente. La atención perfecta, disponible siempre, para cada cliente que llegue.",
-        image: "https://images.unsplash.com/photo-1573497491208-6b1acb260507?q=80&w=2070&auto=format&fit=crop",
+        image: "/images/asistencia.png",
         location: "Servicio Premium"
     },
     {
@@ -35,7 +35,7 @@ const slides = [
         title: "Pagos justos",
         subtitle: "Equipos motivados",
         description: "Comisiones automáticas, claras y sin errores. Mantén la motivación de tu equipo con pagos precisos y puntuales. La transparencia genera confianza y la confianza produce resultados.",
-        image: "https://images.unsplash.com/photo-1621605815971-fbc98d665033?q=80&w=2070&auto=format&fit=crop",
+        image: "/images/pagos-justos.png",
         location: "Confianza Total"
     },
     {
@@ -186,7 +186,7 @@ export default function HeroCarousel() {
                             </svg>
                         )}
                     </div>
-                    <a href="#leads" className="uppercase text-sm tracking-widest hover:text-orange-400 transition-colors">Descubrir</a>
+                    <a href="#leads" className="uppercase text-sm tracking-widest text-white hover:text-orange-400 transition-colors font-medium">Descubrir</a>
                 </div>
             </div>
 
@@ -213,7 +213,7 @@ export default function HeroCarousel() {
 
                         <div className="absolute bottom-4 left-4 pr-2">
                             <h4 className="font-bold text-md md:text-lg leading-tight">{slideItem.title}</h4>
-                            <p className="text-xs text-orange-300 mt-1">{slideItem.location}</p>
+                            <p className="text-xs text-orange-400 mt-1">{slideItem.location}</p>
                         </div>
                     </motion.div>
                 ))}
