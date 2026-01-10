@@ -2,18 +2,10 @@
 
 import { motion } from "framer-motion";
 import {
-  Calendar,
-  Wallet,
-  CheckCircle2,
-  Users,
-  Package,
-  MessageSquare,
-  ChevronRight,
   Menu,
   X,
   Rocket,
   Zap,
-  HandCoins,
   ShieldCheck,
   ArrowRight
 } from "lucide-react";
@@ -21,6 +13,7 @@ import { useState, useEffect } from "react";
 import Counter from "@/components/Counter";
 import LeadForm from "@/components/LeadForm";
 import { LegalLinks, ContactInfo } from "@/components/Legal";
+import HeroCarousel from "@/components/HeroCarousel";
 
 // Swiper imports
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -203,42 +196,8 @@ export default function Home() {
       </section>
 
       {/* 4. VALUE PROPOSITION */}
-      <section id="por-que" className="py-40 px-6">
-        <div className="max-w-7xl mx-auto">
-          <motion.div {...fadeUp} className="text-center mb-32 space-y-6">
-            <h2 className="text-4xl md:text-7xl font-bold text-main-text tracking-tight max-w-4xl mx-auto uppercase">La ventaja que separa a una barbería común de una que crece.</h2>
-            <p className="text-secondary-text text-xl md:text-2xl max-w-2xl mx-auto font-medium opacity-70">
-              Diseñado para dueños que quieren control, orden y crecimiento real.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            {[
-              { icon: Calendar, title: "El fin del caos", desc: "Agenda visual, sin dobles reservas ni mensajes perdidos." },
-              { icon: MessageSquare, title: "Tu secretaria 24/7", desc: "El bot atiende, confirma y recuerda por ti." },
-              { icon: Wallet, title: "Control financiero real", desc: "Ingresos, propinas y gastos claros en tiempo real." },
-              { icon: HandCoins, title: "Pagos claros, equipos leales", desc: "Comisiones automáticas, sin discusiones." },
-              { icon: Users, title: "Relaciones, no contactos", desc: "Historial, preferencias y fidelización." },
-              { icon: Package, title: "Inventario sin pérdidas", desc: "Stock siempre bajo control." }
-            ].map((card, i) => (
-              <motion.div
-                key={card.title}
-                {...fadeUp}
-                transition={{ delay: i * 0.1 }}
-                className="premium-card group hover:bg-surface/50 border-secondary-accent/5 backdrop-blur-sm"
-              >
-                <div className="w-14 h-14 rounded-xl bg-primary-accent/5 flex items-center justify-center mb-8 border border-primary-accent/10">
-                  <card.icon className="text-primary-accent" size={28} />
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-main-text tracking-tight">{card.title} —</h3>
-                <p className="text-secondary-text leading-relaxed text-lg font-medium opacity-80 mb-8">{card.desc}</p>
-                <a href="#leads" className="inline-flex items-center gap-2 text-primary-accent text-xs font-black uppercase tracking-widest group-hover:gap-3 transition-all">
-                  Ver cómo funciona <ChevronRight size={14} />
-                </a>
-              </motion.div>
-            ))}
-          </div>
-        </div>
+      <section id="por-que" className="relative">
+        <HeroCarousel />
       </section>
 
       {/* 5. HOW IT WORKS */}
