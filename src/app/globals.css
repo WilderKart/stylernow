@@ -4,7 +4,7 @@
   --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
-  --color-background: #0B0F14;
+  --color-background: #000000;
   --color-surface: #1A2430;
   --color-primary-accent: #E0B84C;
   --color-secondary-accent: #B89B5E;
@@ -20,7 +20,7 @@
   }
 
   :root {
-    --background: 222 47% 6%;
+    --background: 0 0% 0%;
     /* #0B0F14 */
     --foreground: 40 40% 90%;
     /* #EFE7D8 */

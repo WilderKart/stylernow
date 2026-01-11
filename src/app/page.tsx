@@ -53,7 +53,7 @@ export default function Home() {
     <main className="relative min-h-screen selection:bg-orange-400/30 selection:text-orange-400 bg-black">
 
       {/* 1. NAVBAR */}
-      <nav className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${isScrolled ? "py-4 bg-background/90 backdrop-blur-xl border-b border-secondary-accent/10" : "py-6 bg-transparent"
+      <nav className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${isScrolled ? "py-4 bg-[#0B0F14]/90 backdrop-blur-xl border-b border-secondary-accent/10" : "py-6 bg-transparent"
         }`}>
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           <div className="text-2xl font-bold tracking-tighter text-white">
@@ -100,52 +100,61 @@ export default function Home() {
         )}
       </nav>
 
-      {/* 2. HERO SECTION */}
-      <section id="inicio" className="relative pt-32 pb-20 md:pt-40 md:pb-24 lg:pt-60 lg:pb-32 px-6 overflow-hidden min-h-[80vh] md:min-h-[90vh] flex items-center">
-        {/* Background Image - Optimized to avoid excessive zoom and centered on subject for mobile */}
-        <div className="absolute inset-0 z-0 overflow-hidden">
+      {/* 2. HERO */}
+      <section className="relative h-screen w-full overflow-hidden bg-black">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
           <img
-            src="/images/hero-premium.jpg"
-            alt="Stylernow Premium Experience"
-            className="w-full h-full object-cover object-[80%_center] md:object-center opacity-75 md:opacity-50 select-none pointer-events-none transition-all duration-1000"
+            src="/images/hero-main.jpg"
+            alt="Hero Background"
+            className="w-full h-full object-contain md:object-cover object-center select-none pointer-events-none"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/40 to-background" />
-          <div className="absolute inset-0 bg-gradient-to-r from-background/60 via-transparent to-background/60 md:hidden" />
+          {/* Gradient Overlays to ensure text readability */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-transparent to-black/90" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-black/60" />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto flex flex-col items-center text-center">
+        {/* Content Container - Split into Top (Text) and Bottom (CTA) */}
+        {/* Content Container - Split into Top (Text) and Bottom (CTA) */}
+        <div className="relative z-10 max-w-7xl mx-auto h-full flex flex-col justify-between pb-16 pt-20 md:pb-56 md:pt-32 px-6">
+
+          {/* TOP: Title (Centered) */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="space-y-12"
+            className="flex flex-col items-center text-center space-y-4 md:space-y-6"
           >
-            <div className="inline-flex items-center gap-2 py-2 px-6 rounded-full bg-orange-400/10 border border-orange-400/20 text-orange-400 text-[10px] font-black tracking-[0.3em] uppercase">
-              Acceso privado — Cupos limitados
-            </div>
-
-            <h1 className="text-5xl md:text-8xl lg:text-9xl font-bold leading-[0.9] tracking-tighter text-white max-w-5xl mx-auto">
-              Mientras tú creas estilo, tu agenda se llena sola.
+            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.1] md:leading-[0.9] tracking-tighter text-white drop-shadow-2xl uppercase">
+              La Gestión <span className="text-orange-400">Premium</span> que tu <br className="hidden md:block" /> Barbería <span className="text-orange-400">merece.</span>
             </h1>
+          </motion.div>
 
-            <p className="text-lg md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-medium opacity-80">
-              Reservas automáticas, confirmaciones inteligentes y control total del negocio en una sola plataforma premium.
+          {/* BOTTOM: CTA Button (Centered to align with Title) */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="flex flex-col items-center gap-3 md:gap-4"
+          >
+            {/* Subtitle */}
+            <p className="text-sm sm:text-base md:text-xl text-gray-200 max-w-xl md:max-w-2xl text-center leading-relaxed font-medium opacity-90 drop-shadow-lg mb-1 md:mb-2">
+              Gestiona reservas, pagos y clientes... Aumenta tus ingresos y ahorra tiempo con StylerNow.
             </p>
 
-            <div className="flex flex-col items-center gap-6 pt-4">
-              <a href="#leads" className="bg-orange-400 text-white hover:bg-orange-500 px-12 py-5 text-sm font-bold uppercase tracking-[0.2em] shadow-2xl shadow-orange-400/20 transition-all rounded-full">
-                {primaryCTA}
-              </a>
-              <p className="text-[10px] text-gray-400 uppercase tracking-widest font-bold opacity-50">
-                Datos protegidos. Control total. Tú manejas tu dinero.
-              </p>
-            </div>
+            <a href="#leads" className="bg-orange-400 text-white hover:bg-orange-500 px-8 py-3 md:px-10 md:py-4 text-[10px] md:text-sm font-bold uppercase tracking-[0.2em] shadow-2xl shadow-orange-400/20 transition-all rounded-full transform hover:scale-105">
+              {primaryCTA}
+            </a>
+            <p className="text-[9px] md:text-[10px] text-center text-gray-300 uppercase tracking-widest font-bold opacity-60 md:ml-2">
+              Solo 1000 cupos para el lanzamiento beta.
+            </p>
           </motion.div>
+
         </div>
       </section>
 
       {/* 3. SOFT SOCIAL PROOF (Stats) */}
-      <section className="py-24 border-y border-secondary-accent/5 bg-surface/30 relative overflow-hidden">
+      < section className="py-24 border-y border-secondary-accent/5 bg-surface/30 relative overflow-hidden" >
         <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-background opacity-50" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-6">
@@ -193,17 +202,17 @@ export default function Home() {
             </a>
           </motion.div>
         </div>
-      </section>
+      </section >
 
       {/* 4. VALUE PROPOSITION */}
-      <section id="por-que" className="relative">
+      < section id="por-que" className="relative" >
         <HeroCarousel />
-      </section>
+      </section >
 
       {/* 5. HOW IT WORKS */}
-      <section id="como-funciona" className="relative py-24 md:py-40 px-6 overflow-hidden">
+      < section id="como-funciona" className="relative py-24 md:py-40 px-6 overflow-hidden" >
         {/* Premium Barber Background - Fixed height on mobile to prevent extreme zoom */}
-        <div className="absolute top-0 left-0 right-0 h-[600px] md:h-full z-0 opacity-30 md:opacity-40 filter grayscale contrast-125 overflow-hidden">
+        < div className="absolute top-0 left-0 right-0 h-[600px] md:h-full z-0 opacity-30 md:opacity-40 filter grayscale contrast-125 overflow-hidden" >
           <img
             src="/images/steps-bg-premium.png"
             alt="Premium Barber Background"
@@ -211,7 +220,7 @@ export default function Home() {
           />
           {/* Multi-stage gradient to blend into background */}
           <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background md:via-background/20" />
-        </div>
+        </div >
 
         <div className="relative z-10 max-w-7xl mx-auto">
           <motion.div {...fadeUp} className="text-center mb-24 md:mb-32">
@@ -265,10 +274,10 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </section>
+      </section >
 
       {/* 6. INTERFACE (GALLERY) */}
-      <section id="experiencia" className="py-40 px-6">
+      < section id="experiencia" className="py-40 px-6" >
         <div className="max-w-7xl mx-auto">
           <motion.div {...fadeUp} className="text-center mb-32 space-y-6">
             <h2 className="text-4xl md:text-7xl font-bold text-white uppercase">Elegancia que se siente. Control que se nota.</h2>
@@ -309,10 +318,10 @@ export default function Home() {
             </a>
           </div>
         </div>
-      </section>
+      </section >
 
       {/* 7. PRICING (INVERSIÓN) */}
-      <section id="inversion" className="py-40 px-6 bg-surface/10 border-y border-secondary-accent/5">
+      < section id="inversion" className="py-40 px-6 bg-surface/10 border-y border-secondary-accent/5" >
         <div className="max-w-7xl mx-auto">
           <motion.div {...fadeUp} className="text-center mb-24 space-y-6">
             <h2 className="text-4xl md:text-7xl font-bold text-white uppercase">Inversión para miembros fundadores</h2>
@@ -345,10 +354,10 @@ export default function Home() {
             El precio se bloquea al solicitar acceso, no al activar.
           </p>
         </div>
-      </section>
+      </section >
 
       {/* 8. FINAL CAPTURE */}
-      <section id="leads" className="py-40 px-6 relative overflow-hidden bg-background">
+      < section id="leads" className="py-40 px-6 relative overflow-hidden bg-background" >
         <div className="absolute inset-0 z-0">
           <video
             autoPlay
@@ -382,10 +391,10 @@ export default function Home() {
             <LeadForm />
           </div>
         </div>
-      </section>
+      </section >
 
       {/* 9. FOOTER */}
-      <footer className="py-32 px-6 bg-background border-t border-secondary-accent/5">
+      < footer className="py-32 px-6 bg-background border-t border-secondary-accent/5" >
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-start gap-20 mb-24">
             <div className="space-y-8 max-w-sm">
@@ -422,8 +431,8 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </footer>
-    </main>
+      </footer >
+    </main >
   );
 }
 
