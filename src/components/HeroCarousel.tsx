@@ -187,6 +187,7 @@ export default function HeroCarousel() {
                             </svg>
                         )}
                     </div>
+                    <a href="#leads" className="uppercase text-xs md:text-sm tracking-widest text-white hover:text-orange-400 transition-colors font-medium">Descubrir</a>
                 </div>
             </div>
 
