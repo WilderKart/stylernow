@@ -1,8 +1,11 @@
 "use client";
 
+import Image from "next/image";
+
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Play, Pause } from 'lucide-react';
+import { Skeleton } from "@/components/ui/skeleton";
 
 // DATOS DEFINITIVOS PARA STYLERNOW
 const slides = [
@@ -62,6 +65,13 @@ export default function HeroCarousel() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isPaused, setIsPaused] = useState(false);
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        // Simulate initial loading or wait for image heavy resources
+        const timer = setTimeout(() => setIsLoading(false), 1000); // Small grace period
+        return () => clearTimeout(timer);
+    }, []);
 
     useEffect(() => {
         if (isPaused) return;
@@ -97,6 +107,12 @@ export default function HeroCarousel() {
         <div className="relative w-full h-screen overflow-hidden bg-black text-white font-sans">
 
             {/* FONDO CON ANIMACIÓN */}
+            {isLoading && (
+                <div className="absolute inset-0 z-50 bg-black flex items-center justify-center">
+                    <Skeleton className="w-full h-full bg-stone-900" />
+                </div>
+            )}
+
             <AnimatePresence mode='wait'>
                 <motion.div
                     key={slides[currentIndex].id}
@@ -111,10 +127,13 @@ export default function HeroCarousel() {
                     className="absolute inset-0 z-0"
                 >
                     <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/50 to-black/20 z-10" />
-                    <img
+                    <Image
                         src={slides[currentIndex].image}
                         alt={slides[currentIndex].title}
-                        className="w-full h-full object-contain md:object-cover object-center"
+                        fill
+                        priority
+                        className="object-contain md:object-cover object-center"
+                        sizes="100vw"
                     />
                 </motion.div>
             </AnimatePresence>
@@ -205,10 +224,12 @@ export default function HeroCarousel() {
                         onClick={() => goToSlide(slides.indexOf(slideItem))}
                         className="relative flex-shrink-0 w-28 h-40 md:w-40 md:h-56 rounded-xl overflow-hidden cursor-pointer group shadow-2xl border border-white/10"
                     >
-                        <img
+                        <Image
                             src={slideItem.image}
                             alt={slideItem.title}
-                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            fill
+                            sizes="(max-width: 768px) 33vw, 15vw"
+                            className="object-cover transition-transform duration-500 group-hover:scale-110"
                         />
                         <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors" />
 
