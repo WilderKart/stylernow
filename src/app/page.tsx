@@ -3,7 +3,7 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import StatsSection from "@/components/StatsSection";
 import HeroCarousel from "@/components/HeroCarousel";
-import HowItWorks from "@/components/HowItWorks";
+import { FeatureShowcase } from "@/components/FeatureShowcase";
 import InterfaceGallery from "@/components/InterfaceGallery";
 import PricingSection from "@/components/PricingSection";
 import FinalCapture from "@/components/FinalCapture";
@@ -28,7 +28,7 @@ export default function Home() {
         <HeroCarousel />
       </section>
 
-      <HowItWorks />
+      <FeatureShowcase />
       <InterfaceGallery />
       <PricingSection />
       <FAQ />

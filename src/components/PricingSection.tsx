@@ -1,14 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Zap, ShieldCheck, ArrowRight } from "lucide-react";
-
-const fadeUp = {
-    initial: { opacity: 0, y: 30 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true },
-    transition: { duration: 0.6, ease: "easeOut" as const },
-};
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export default function PricingSection() {
     const buttons = [
@@ -20,24 +13,23 @@ export default function PricingSection() {
     return (
         <section id="inversion" className="py-40 px-6 bg-surface/10 border-y border-secondary-accent/5">
             <div className="max-w-7xl mx-auto">
-                <motion.div {...fadeUp} className="text-center mb-24 space-y-6">
+                <ScrollReveal className="text-center mb-24 space-y-6">
                     <h2 className="text-4xl md:text-7xl font-bold text-white uppercase">
                         Inversión para miembros fundadores
                     </h2>
                     <p className="text-orange-400 text-xl md:text-2xl font-medium opacity-70">
                         Precio preferencial solo durante esta fase privada.
                     </p>
-                </motion.div>
+                </ScrollReveal>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
                     {buttons.map((btn, i) => (
-                        <motion.div
+                        <ScrollReveal
                             key={btn}
-                            {...fadeUp}
-                            transition={{ delay: i * 0.1 }}
+                            delay={i * 0.2}
                             className={`premium-card p-12 text-center flex flex-col items-center justify-between min-h-[300px] ${i === 1
-                                    ? "border-orange-400 shadow-2xl shadow-orange-400/10"
-                                    : "border-gray-800"
+                                ? "border-orange-400 shadow-2xl shadow-orange-400/10"
+                                : "border-gray-800"
                                 }`}
                         >
                             <div className="w-12 h-12 rounded-full bg-primary-accent/5 flex items-center justify-center mb-8">
@@ -52,13 +44,13 @@ export default function PricingSection() {
                             <a
                                 href="#leads"
                                 className={`w-full py-5 text-xs font-black uppercase tracking-[0.2em] transition-all rounded-full ${i === 1
-                                        ? "bg-orange-400 text-white hover:bg-orange-500"
-                                        : "border border-orange-400 text-white hover:bg-orange-400"
+                                    ? "bg-orange-400 text-white hover:bg-orange-500"
+                                    : "border border-orange-400 text-white hover:bg-orange-400"
                                     }`}
                             >
                                 {btn}
                             </a>
-                        </motion.div>
+                        </ScrollReveal>
                     ))}
                 </div>
 

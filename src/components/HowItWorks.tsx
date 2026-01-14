@@ -1,14 +1,6 @@
 "use client";
-
-import { motion } from "framer-motion";
 import Image from "next/image";
-
-const fadeUp = {
-    initial: { opacity: 0, y: 30 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true },
-    transition: { duration: 0.6, ease: "easeOut" as const },
-};
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export default function HowItWorks() {
     const primaryCTA = "Solicitar acceso anticipado";
@@ -47,11 +39,11 @@ export default function HowItWorks() {
             </div>
 
             <div className="relative z-10 max-w-7xl mx-auto">
-                <motion.div {...fadeUp} className="text-center mb-24 md:mb-32">
+                <ScrollReveal className="text-center mb-24 md:mb-32">
                     <h2 className="text-4xl md:text-7xl font-bold text-white uppercase tracking-tighter">
                         Tu negocio, en su mejor versión.
                     </h2>
-                </motion.div>
+                </ScrollReveal>
 
                 <div className="space-y-32 md:space-y-40">
                     {steps.map((step, i) => (
@@ -60,7 +52,7 @@ export default function HowItWorks() {
                             className={`flex flex-col ${i % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
                                 } items-center gap-20 lg:gap-32`}
                         >
-                            <motion.div {...fadeUp} className="flex-1 space-y-10">
+                            <ScrollReveal className="flex-1 space-y-10">
                                 {/* Circular Step Indicator */}
                                 <div className="relative w-32 h-32 flex items-center justify-center">
                                     {/* Outer Yellow Circle */}
@@ -87,7 +79,7 @@ export default function HowItWorks() {
                                 >
                                     {primaryCTA}
                                 </a>
-                            </motion.div>
+                            </ScrollReveal>
                             <div className="flex-1 relative w-full group">
                                 <div className="aspect-video rounded-[2rem] overflow-hidden bg-surface border border-secondary-accent/10 shadow-2xl">
                                     <Image

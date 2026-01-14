@@ -1,18 +1,11 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
-
-const fadeUp = {
-    initial: { opacity: 0, y: 30 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true },
-    transition: { duration: 0.6, ease: "easeOut" as const },
-};
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export default function InterfaceGallery() {
     const slides = [
@@ -25,14 +18,14 @@ export default function InterfaceGallery() {
     return (
         <section id="experiencia" className="py-40 px-6">
             <div className="max-w-7xl mx-auto">
-                <motion.div {...fadeUp} className="text-center mb-32 space-y-6">
+                <ScrollReveal className="text-center mb-32 space-y-6">
                     <h2 className="text-4xl md:text-7xl font-bold text-white uppercase">
                         Elegancia que se siente. Control que se nota.
                     </h2>
                     <p className="text-orange-400 text-xl md:text-2xl font-medium opacity-70">
                         Diseñado para verse bien y funcionar mejor.
                     </p>
-                </motion.div>
+                </ScrollReveal>
 
                 <Swiper
                     modules={[Autoplay, Pagination]}

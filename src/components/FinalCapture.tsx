@@ -1,14 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
 import LeadForm from "@/components/LeadForm";
-
-const fadeUp = {
-    initial: { opacity: 0, y: 30 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true },
-    transition: { duration: 0.6, ease: "easeOut" as const },
-};
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export default function FinalCapture() {
     const primaryCTA = "Solicitar acceso anticipado";
@@ -29,7 +22,7 @@ export default function FinalCapture() {
             </div>
 
             <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-                <motion.div {...fadeUp} className="space-y-10 text-center lg:text-left">
+                <ScrollReveal className="space-y-10 text-center lg:text-left">
                     <h2 className="text-5xl md:text-8xl font-black text-white leading-[0.9] tracking-tighter uppercase">
                         ¿Vas a esperar a que tu competencia lo haga primero?
                     </h2>
@@ -47,7 +40,7 @@ export default function FinalCapture() {
                             Datos protegidos. Control total. Tú manejas tu dinero.
                         </p>
                     </div>
-                </motion.div>
+                </ScrollReveal>
 
                 <div className="w-full">
                     <LeadForm />

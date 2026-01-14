@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Minus } from "lucide-react";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 const faqs = [
     {
@@ -33,22 +34,22 @@ export default function FAQ() {
     return (
         <section className="py-32 px-6 bg-black border-t border-secondary-accent/5">
             <div className="max-w-4xl mx-auto">
-                <div className="text-center mb-20 space-y-4">
+                <ScrollReveal className="text-center mb-20 space-y-4">
                     <h2 className="text-3xl md:text-5xl font-bold text-white uppercase tracking-tighter">
                         Preguntas Frecuentes
                     </h2>
                     <p className="text-gray-400 text-sm md:text-base">
                         Todo lo que necesitas saber antes de dar el salto.
                     </p>
-                </div>
+                </ScrollReveal>
 
                 <div className="space-y-4">
                     {faqs.map((faq, index) => (
-                        <div
+                        <ScrollReveal
                             key={index}
                             className={`border rounded-2xl overflow-hidden transition-all duration-300 ${activeIndex === index
-                                    ? "border-orange-400/50 bg-[#0B0F14]"
-                                    : "border-white/5 bg-transparent hover:border-white/10"
+                                ? "border-orange-400/50 bg-[#0B0F14]"
+                                : "border-white/5 bg-transparent hover:border-white/10"
                                 }`}
                         >
                             <button
@@ -86,7 +87,7 @@ export default function FAQ() {
                                     </motion.div>
                                 )}
                             </AnimatePresence>
-                        </div>
+                        </ScrollReveal>
                     ))}
                 </div>
             </div>
