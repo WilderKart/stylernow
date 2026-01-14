@@ -20,18 +20,30 @@ export const FeatureShowcase: React.FC = () => {
     const containerRef = useRef<HTMLDivElement>(null);
     const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     const progressIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+    const [isInView, setIsInView] = useState(false);
 
     const scrollToStep = (index: number) => {
         if (!containerRef.current) return;
         const totalHeight = containerRef.current.scrollHeight - window.innerHeight;
         const scrollTarget = (index / (steps.length - 1)) * totalHeight;
         const absoluteTarget = scrollTarget + containerRef.current.offsetTop;
-        window.scrollTo({ top: absoluteTarget, behavior: 'smooth' });
+
+        // Only scroll if we are actively viewing this section to avoid hijacking
+        if (isInView) {
+            window.scrollTo({ top: absoluteTarget, behavior: 'smooth' });
+        }
     };
 
     const startAutoCycle = () => {
         if (timerRef.current) clearTimeout(timerRef.current);
         if (progressIntervalRef.current) clearInterval(progressIntervalRef.current);
+
+        // Don't start cycle if not in view
+        if (!isInView) {
+            setTimerProgress(0);
+            return;
+        }
+
         setTimerProgress(0);
         const duration = 8000;
         const start = Date.now();
@@ -42,21 +54,48 @@ export const FeatureShowcase: React.FC = () => {
         timerRef.current = setTimeout(() => { scrollToStep((activeStep + 1) % steps.length); }, duration);
     };
 
+    // Observer to detect when user is actually looking at this section
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                setIsInView(entry.isIntersecting);
+            },
+            { threshold: 0.1 } // Consider in view if at least 10% is visible
+        );
+
+        if (containerRef.current) {
+            observer.observe(containerRef.current);
+        }
+
+        return () => observer.disconnect();
+    }, []);
+
+    // Effect to restart/stop cycle based on visibility
+    useEffect(() => {
+        startAutoCycle();
+        return () => {
+            if (timerRef.current) clearTimeout(timerRef.current);
+            if (progressIntervalRef.current) clearInterval(progressIntervalRef.current);
+        };
+    }, [isInView, activeStep]); // Re-run when view status or step changes
+
     useEffect(() => {
         const handleScroll = () => {
             if (!containerRef.current) return;
             const rect = containerRef.current.getBoundingClientRect();
             const totalHeight = rect.height - window.innerHeight;
+
+            // Logic to detect active step based on scroll position
+            // Only update active step if we are arguably "inside" the section's scroll range
             if (rect.top <= 0 && Math.abs(rect.top) <= totalHeight) {
                 const progress = Math.abs(rect.top) / totalHeight;
                 const stepIndex = Math.min(steps.length - 1, Math.floor(progress * (steps.length - 0.01)));
                 if (stepIndex !== activeStep) setActiveStep(stepIndex);
-                startAutoCycle();
             }
         };
-        startAutoCycle();
+
         window.addEventListener('scroll', handleScroll, { passive: true });
-        return () => { window.removeEventListener('scroll', handleScroll); if (timerRef.current) clearTimeout(timerRef.current); if (progressIntervalRef.current) clearInterval(progressIntervalRef.current); };
+        return () => { window.removeEventListener('scroll', handleScroll); };
     }, [activeStep]);
 
     return (
